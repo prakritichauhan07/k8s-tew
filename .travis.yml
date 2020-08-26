@@ -14,24 +14,6 @@ go:
 install: true
 
 script:
-  #- if [ "${TRAVIS_CPU_ARCH}" == "arm64" ]; then
-  - sudo service docker stop
-  - git clone https://github.com/prakriti07/pouch
-  - cd pouch
-  - ./hack/install/install_containerd.sh
-  - sudo mkdir /etc/containerd/
-  - sudo touch /etc/containerd/config.toml
-  - sudo chmod 777 /etc/containerd/config.toml
-  - sudo chmod 664 /etc/systemd/system/containerd.service
-  - sudo cp ./config.toml /etc/containerd/config.toml
-  - sudo cat /etc/containerd/config.toml
-  - cd ..
-  - sudo rm -rf pouch/
-  - sudo service docker start
-  - sudo systemctl start containerd
-  - service docker status
-  - service containerd status
-   # fi 
   - make
 
 deploy:
